@@ -1,0 +1,42 @@
+.btn-home {
+    position: relative;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .btn-home::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s, left 0.3s;
+  }
+  
+  .btn-home:hover::before {
+    width: 50%;
+    left: 0;
+  }
+  
+  .btn-home::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s, right 0.3s;
+  }
+  
+  .btn-home:hover::after {
+    width: 50%;
+    right: 0;
+  }
+  
