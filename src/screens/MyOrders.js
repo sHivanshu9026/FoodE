@@ -9,7 +9,7 @@ const MyOrders = () => {
 
   const fetchMyOrder = async () => {
     console.log(localStorage.getItem('userEmail'));
-    await fetch("http://localhost:4000/api/myorderData",{
+    await fetch("http://localhost:5001/api/myorderData",{
         method:'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ const MyOrders = () => {
                   My Orders <BiPackage />
                 </h1>
         <div style={{}}>
-        {orderData!=={} ? Array(orderData).map(data=>{
+        {orderData && orderData.length > 0 ? orderData.map(data => {
         return (
             data.orderData ?
                 data.orderData.order_data.slice(0).reverse().map((item)=>{

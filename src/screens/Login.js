@@ -37,7 +37,7 @@ const Login = () => {
   const PostData = async (e) => {
     e.preventDefault();
     const { email, password } = credentials;
-    const response = await fetch("http://localhost:4000/api/login", {
+    const response = await fetch("http://localhost:5001/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const Login = () => {
       <div style={{backgroundImage:`url(${loginbg})`, backgroundSize: 'cover',backgroundPosition: 'center',height: '100vh',width: '100vw', display: "flex", justifyContent: "center", alignItems: "center" }}>
         <div style={{ boxShadow:"10px 10px 20px 0px black",justifyContent: "center", alignItems: "center", width: "30rem", backgroundColor: "white", color: "white", marginTop: "4rem", borderRadius: "25px" }}>
         <h2 style={{ color: "black", display: "flex", justifyContent: "center", alignItems: "center", marginTop:"20px"  }}><BiLogInCircle /> Login</h2>
-          <form method="POST" style={{ width: "30rem", backgroundColor: "ffffff", color: "white", padding: "1.5rem" }}>
+         <form onSubmit={PostData} style={{ width: "30rem", padding: "1.5rem" }}>
             <div className="form-group mb-4">
               <label htmlFor="email" style={{ color: "black" }}>
                 <BiEnvelope /> Email
@@ -112,7 +112,6 @@ const Login = () => {
               type="submit"
               name="login"
               id="login"
-              onClick={PostData}
               style={{
                 backgroundColor: "#ff7800",
                 width: "100%",

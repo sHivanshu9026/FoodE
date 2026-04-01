@@ -1,25 +1,31 @@
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb+srv://nilay2003:gotham123@clusterfoode.yptzswe.mongodb.net/foodeproject?retryWrites=true&w=majority';
+
+require("dotenv").config();
+
+const mongoURI = process.env.MONGO_URI;
 
 const mongoDB = async () => {
   try {
-    await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    // Connect to MongoDB (no deprecated options)
+    await mongoose.connect(mongoURI);
 
-    console.log('Connected to MongoDB');
+    console.log("✅ Connected to MongoDB");
 
-    const foodItems = mongoose.connection.db.collection('food_items');
-    const itemData = await foodItems.find({}).toArray();
+    // Fetch food items
+    const foodItemsCollection = mongoose.connection.db.collection("food_items");
+    const foodItemsData = await foodItemsCollection.find({}).toArray();
 
-    const foodCategory = mongoose.connection.db.collection('food_category');
-    const catData = await foodCategory.find({}).toArray();
+    // Fetch food categories
+    const foodCategoryCollection = mongoose.connection.db.collection("food_category");
+    const foodCategoryData = await foodCategoryCollection.find({}).toArray();
 
-    global.food_items = itemData;
-    global.food_category = catData;
+    // Store globally
+    global.food_items = foodItemsData;
+    global.food_category = foodCategoryData;
+
+    console.log("✅ Data loaded successfully");
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error.message);
+    console.error("❌ MongoDB Error:", error.message);
   }
 };
 

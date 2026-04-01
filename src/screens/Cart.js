@@ -71,7 +71,7 @@ const Cart = () => {
   const handleCheckout = async () => {
     let userEmail = localStorage.getItem("userEmail");
     try {
-      let response = await fetch("http://localhost:4000/api/cart", {
+      let response = await fetch("http://localhost:5001/api/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

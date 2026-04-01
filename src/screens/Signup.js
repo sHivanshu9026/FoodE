@@ -40,7 +40,7 @@ let name,value;
   const PostData = async (e) => {
     e.preventDefault();
     const { name, email, password, location } = credentials;
-    const response = await fetch("http://localhost:4000/api/register", {
+    const response = await fetch("http://localhost:5001/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
